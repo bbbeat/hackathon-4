@@ -1,4 +1,3 @@
-
 import './App.css';
 import SearchResults from './Components/SearchResults';
 import SearchOrigin from './Components/SearchOrigin';
@@ -9,8 +8,6 @@ import SearchChildren from './Components/SearchChildren';
 import DirectFlight from './Components/DirectFlight';
 import Paginate from './Components/Paginate';
 import { useEffect, useState } from 'react';
-
-
 
 function App() {
   const [searchOrigin, setSearchOrigin] = useState("");
@@ -24,8 +21,6 @@ function App() {
   const [paginate, setPaginate] = useState(5);
   const [offset, setOffset] = useState(0);
 
-
-
   async function fetchData() {
     setLoading(true);
     const response = await fetch(`https://api.skypicker.com/flights?fly_from=${searchOrigin}&fly_to=${searchDestination}&date_from=${searchDate}&flight_type=oneway&adults=${searchAdult}&children=${searchChildren}&infants=0&selected_cabins=M&partner=picky&limit=${paginate}&sort=price&asc=1&max_stopovers=${direct ? 0 : 2}`);
@@ -35,25 +30,9 @@ function App() {
     setLoading(false);
   }
 
-
-
   useEffect(() => {
     paginate > 5 && fetchData();
   }, [paginate]);
-
-  // useEffect(() => {
-  //   searchDestination && fetchData();
-  // }, [offset]);
-
-  // useEffect(() => {
-  //   searchDate && fetchData();
-  // }, [offset]);
-  // useEffect(() => {
-  //   searchAdult && fetchData();
-  // }, [offset]);
-  // useEffect(() => {
-  //   searchChildren && fetchData();
-  // }, [offset]);
 
   return (
     <div className="App">
@@ -95,11 +74,6 @@ function App() {
         paginate={paginate}
         setPaginate={setPaginate}
       />
-
-
-
-
-
 
     </div>
   );
